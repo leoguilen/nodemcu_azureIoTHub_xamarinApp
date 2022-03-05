@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="WeatherApp.Views.HistoryEventsPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource LightBackground}">
+            <Label Text="History" 
+                   TextColor="#003B73" 
+                   FontSize="Title" 
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Padding="0,30,0,0"/>
+
+            <!-- History filter -->
+            <StackLayout HorizontalOptions="CenterAndExpand" 
+                         VerticalOptions="Center" 
+                         Padding="0,20,0,0"
+                         Orientation="Horizontal">
+                <Button x:Name="BtnLastDay" 
+                          Text="Last day"
+                          CornerRadius="30"
+                          Padding="15,0,50,0"
+                          Margin="0,0,-50,0"
+                          StyleClass="Selected"
+                          Clicked="BtnLastDay_Clicked"/>
+                <Button x:Name="BtnLastWeek"
+                          Text="Last week" 
+                          CornerRadius="30" 
+                          Padding="30,0,60,0" 
+                          Margin="0,0,-50,0"
+                          StyleClass="Unselected"
+                          Clicked="BtnLastWeek_Clicked"/>
+                <Button x:Name="BtnLastMonth" 
+                          Text="Last month" 
+                          CornerRadius="30"
+                          StyleClass="Unselected"
+                          Clicked="BtnLastMonth_Clicked"/>
+            </StackLayout>
+
+            <!-- History data list -->
+            <StackLayout Padding="20">
+                <ListView x:Name="historyEventsList" ItemsSource="{Binding EventModel}"
+                          VerticalOptions="FillAndExpand"
+                          SeparatorColor="Black"
+                          IsPullToRefreshEnabled="True"
+                          Refreshing="historyEventsList_Refreshing">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ContentView>
+                                    <Grid>
+                                        <Label Text="{Binding EventTime}" 
+                                               TextColor="Black" 
+                                               HorizontalOptions="Start"
+                                               VerticalTextAlignment="Center"/>
+                                        <Label TextColor="Black" 
+                                               HorizontalOptions="Center"
+                                               VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Humidity: " FontAttributes="Bold"/>
+                                                    <Span Text="{Binding Humidity}"/>
+                                                    <Span Text="%"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label TextColor="Black" 
+                                               HorizontalOptions="End"
+                                               VerticalTextAlignment="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="Temperature: " FontAttributes="Bold"/>
+                                                    <Span Text="{Binding TemperatureInCelsius}"/>
+                                                    <Span Text="°C"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </Grid>
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

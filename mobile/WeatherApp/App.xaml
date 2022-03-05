@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WeatherApp.App">
+    <Application.Resources>
+        <!-- Colors -->
+        <Color x:Key="LightBackground">WhiteSmoke</Color>
+        <Color x:Key="LightPrimaryTextColor">#0074B7</Color>
+        <Color x:Key="LightSecondTextColor">#8f8d8a</Color>
+
+        <!-- Styles -->
+        <Style TargetType="Button"
+               Class="Selected">
+            <Setter Property="BackgroundColor"
+                    Value="#003B73" />
+            <Setter Property="TextColor"
+                    Value="#dfddda" />
+        </Style>
+        <Style TargetType="Button"
+               Class="Unselected">
+            <Setter Property="BackgroundColor"
+                    Value="#dfddda" />
+            <Setter Property="TextColor"
+                    Value="#003B73" />
+        </Style>
+    </Application.Resources>
+</Application>

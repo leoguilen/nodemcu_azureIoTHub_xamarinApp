@@ -1,0 +1,33 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "IotHubs_nodecmu_iot_hub_connectionString": {
+            "value": null
+        },
+        "IotHubs_nodecmu_iot_hub_containerName": {
+            "value": null
+        },
+        "IotHubs_nodecmu_iot_hub_name": {
+            "value": null
+        },
+        "vaults_weather_iot_vault_name": {
+            "value": null
+        },
+        "namespaces_weather_iot_name": {
+            "value": null
+        },
+        "components_functions_insights_name": {
+            "value": null
+        },
+        "databaseAccounts_nodemcu_iot_db_name": {
+            "value": null
+        },
+        "actionGroups_Application_Insights_Smart_Detection_name": {
+            "value": null
+        },
+        "smartdetectoralertrules_failure_anomalies___functions_insights_name": {
+            "value": null
+        }
+    }
+}

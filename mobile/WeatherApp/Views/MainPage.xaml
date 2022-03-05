@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="WeatherApp.Views.MainPage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="{StaticResource LightBackground}">
+            <RelativeLayout HorizontalOptions="End"
+                            HeightRequest="-80">
+                <ffimageloadingsvg:SvgCachedImage WidthRequest="300" 
+                                                  HeightRequest="300"
+                                                  Margin="-80"
+                                                  Source="resource://WeatherApp.Resources.Images.sunny.png"/>
+            </RelativeLayout>
+            <StackLayout x:Name="loaderLayout"
+                         HorizontalOptions="CenterAndExpand" 
+                         VerticalOptions="CenterAndExpand">
+                <ActivityIndicator Color="Teal" IsRunning="True"/>
+                <Label Text="Loading data..." TextColor="Black"/>
+            </StackLayout>
+            <StackLayout x:Name="mainLayout" IsVisible="False">
+                <!--#region Today Temperature -->
+                <StackLayout HorizontalOptions="StartAndExpand"
+                         VerticalOptions="Start"
+                         Margin="30">
+                    <Label x:Name="lbl_lastUpdate" 
+                       Text="..."
+                       FontAttributes="Italic"
+                       TextColor="#8f8d8a"/>
+                    <Label x:Name="lbl_temperature"
+                       Text="0°C" 
+                       TextColor="{StaticResource LightPrimaryTextColor}"
+                       FontSize="Header"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="20" 
+                                                      HeightRequest="20" 
+                                                      Source="resource://WeatherApp.Resources.Icons.humidity.svg"/>
+                        <Label x:Name="lbl_humidity" 
+                           Text="0%"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource LightPrimaryTextColor}"/>
+
+                        <BoxView HeightRequest="0" WidthRequest="20"/>
+
+                        <ffimageloadingsvg:SvgCachedImage WidthRequest="20" 
+                                                      HeightRequest="20" 
+                                                      Source="resource://WeatherApp.Resources.Icons.high-temperature.svg"/>
+                        <Label x:Name="lbl_temperatureMax"
+                       Text="0°C"
+                       FontAttributes="Bold"
+                       TextColor="#991e1e"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--#endregion-->
+
+                <BoxView Color="LightGray" HeightRequest="1" Margin="30"></BoxView>
+
+                <!--#region Last Temperatures -->
+                <StackLayout BackgroundColor="{StaticResource LightBackground}"
+                         HeightRequest="200">
+                    <CollectionView x:Name="lastEventsList" ItemsSource="{Binding EventModel}"
+                                  ItemsLayout="HorizontalList">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="30,5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="45" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Spacing="5"
+                                             HorizontalOptions="CenterAndExpand" 
+                                             VerticalOptions="CenterAndExpand">
+                                        <Label x:Name="lbl_date" 
+                                             Grid.Column="1"
+                                             Text="{Binding EventTime}"
+                                             TextColor="#83817e"
+                                             FontAttributes="Bold"
+                                             LineBreakMode="NoWrap" />
+                                        <ffimageloadingsvg:SvgCachedImage Grid.Row="1"
+                                       Grid.Column="1"
+                                       HeightRequest="30"
+                                       Source="resource://WeatherApp.Resources.Icons.sunny.svg"/>
+                                        <Label x:Name="lbl_maxTemp"  
+                                             Grid.Row="2"
+                                             Grid.Column="1"
+                                             Text="{Binding HeatIndexInCelsius}"
+                                             TextColor="Black"
+                                             FontAttributes="Bold"
+                                             HorizontalTextAlignment="Center"
+                                             LineBreakMode="TailTruncation"/>
+                                        <Label x:Name="lbl_minTemp" 
+                                             Grid.Row="3"
+                                             Grid.Column="1"
+                                             Text="{Binding TemperatureInCelsius}"
+                                             TextColor="Gray"
+                                             HorizontalTextAlignment="Center"
+                                             LineBreakMode="TailTruncation"/>
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Button x:Name="BtnSeeHistory" 
+                              Text="See more"
+                              Margin="0,20"
+                              BackgroundColor="Transparent"
+                              TextColor="#8f8d8a"
+                              Clicked="BtnSeeHistory_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+                <!--#endregion-->
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
